@@ -60,5 +60,38 @@ UserRouter.post("/", async (req, res) => {
     });
   }
 });
+/*--------------------------------update--------------------------------------*/
+UserRouter.put("/update/:id", async (req, res) => {
+  const { name, surname } = req.body;
+  try {
+    await User.findOneAndUpdate({ _id: req.params.id }, { name: name, surname });
+    return res.json({
+      success: true,
+      message: "usuario actualizado",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+/*--------------------------------delete---------------------------------------*/
+UserRouter.delete("/delete/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    await User.findByIdAndDelete(id);
+    return res.json({
+      success: true,
+      message: "usuario borrado",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 
 module.exports = UserRouter;

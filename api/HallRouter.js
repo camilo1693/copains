@@ -58,5 +58,38 @@ HallRouter.post("/", async (req, res) => {
     });
   }
 });
+/*--------------------------------update--------------------------------------*/
+HallRouter.put("/update/:id", async (req, res) => {
+  const { hallname, game } = req.body;
+  try {
+    await User.findOneAndUpdate({ _id: req.params.id }, { hallname, game });
+    return res.json({
+      success: true,
+      message: "usuario actualizado",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+/*--------------------------------delete---------------------------------------*/
+HallRouter.delete("/delete/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    await User.findByIdAndDelete(id);
+    return res.json({
+      success: true,
+      message: "usuario borrado",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 
 module.exports = HallRouter;

@@ -2,16 +2,19 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
+/*-------------------------------- importar routas------------------------------------*/
 
 const UserRouter = require("./api/UserRouter")
 const HallRouter = require("./api/HallRouter")
 const PrivateRouter = require("./api/PrivateRouter")
 
+/*--------------------------------------------------------------------------------------*/
 const PORT = process.env.PORT || 5000;
 const { DB_URI } = process.env;
 
 mongoose
-  .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => {
     console.log("DB connected");
   })
