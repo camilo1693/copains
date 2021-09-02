@@ -75,6 +75,7 @@ UserRouter.put("/update/:id", async (req, res) => {
       message: err.message,
     });
   }
+  
 });
 
 /*--------------------------------delete---------------------------------------*/

@@ -41,5 +41,38 @@ PrivateRouter.post("/", async (req, res) => {
     });
   }
 });
+/*--------------------------------update--------------------------------------*/
+PrivateRouter.put("/update/:id", async (req, res) => {
+  const { user } = req.body;
+  try {
+    await Private.findOneAndUpdate({ _id: req.params.id }, { user });
+    return res.json({
+      success: true,
+      message: "private update",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+  
+});
 
+/*--------------------------------delete---------------------------------------*/
+PrivateRouter.delete("/delete/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    await Private.findByIdAndDelete(id);
+    return res.json({
+      success: true,
+      message: "private delete",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 module.exports = PrivateRouter;

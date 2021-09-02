@@ -29,6 +29,7 @@ HallRouter.get("/find/:id", async (req, res) => {
   }
 });
 
+
 /*----------------------------post---------------------------*/
 
 HallRouter.post("/", async (req, res) => {
@@ -60,9 +61,9 @@ HallRouter.post("/", async (req, res) => {
 });
 /*--------------------------------update--------------------------------------*/
 HallRouter.put("/update/:id", async (req, res) => {
-  const { hallname, game } = req.body;
+  const { user } = req.body;
   try {
-    await User.findOneAndUpdate({ _id: req.params.id }, { hallname, game });
+    await User.findOneAndUpdate({ _id: req.params.id }, { user });
     return res.json({
       success: true,
       message: "usuario actualizado",

@@ -8,6 +8,7 @@ mongoose.set('useFindAndModify', false);
 const UserRouter = require("./api/UserRouter")
 const HallRouter = require("./api/HallRouter")
 const PrivateRouter = require("./api/PrivateRouter")
+const GameRouter =require("./api/GameRouter")
 
 /*--------------------------------------------------------------------------------------*/
 const PORT = process.env.PORT || 5000;
@@ -29,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", UserRouter )
 app.use("/hall", HallRouter )
 app.use("/Private", PrivateRouter )
-
+app.use("/Game", GameRouter )
 /*------------------------------------------------------------------------------------*/
 
 app.listen(PORT, () => {

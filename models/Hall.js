@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const User = require("./User");
-
+const Game = require("./Game");
 const HallSchema = mongoose.Schema({
   hallname: {
     type: String,
     required: true,
   },
   game: {
-    type: String,
-    required: true,
+    type: mongoose.Types.ObjectId,
+    ref: "Game"
   },
   user: {
     type: mongoose.Types.ObjectId,
